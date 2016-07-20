@@ -5,11 +5,16 @@ import java.util.Random;
 public class Jokenpo {
 
 	public static void main(String[] args) {
-		String yourChoice = "Paper";
-		String pcChoice = sortChoice();
-
-		oldGame(yourChoice, pcChoice);
-
+		
+		String yourChoice = "Rock"; // Paper, Scissors or Rock
+		String pcChoice;
+		int i = 0;
+		
+		while (i < 100) {
+			pcChoice = sortChoice();
+			System.out.println(yourChoice+" vs "+pcChoice +": " +oldGame(yourChoice, pcChoice));
+			i++;
+		}
 	}
 
 	public static String sortChoice() {
@@ -29,33 +34,29 @@ public class Jokenpo {
 		return null;
 	}
 
-	public static void oldGame(String choice1, String choice2) {
-		if (!choice1.equals(choice2)) {
-			
-			System.out.println(choice1 + " vs " + choice2);
-			
-			if (choice1.equals("Paper") && !choice2.equals(choice1)) {
-				if (choice2.equals("Rock")) {
-					System.out.println("You won! Paper beats Rock");
-				} else {
-					System.out.println("You lose! Scissors beats Paper");
-				}
-			} else if (choice1.equals("Rock") && !choice2.equals(choice1)) {
-				if (choice2.equals("Scissors")) {
-					System.out.println("You won! Rock beats Scissors Pedra");
-				} else {
-					System.out.println("You lose! Paper beats Rock");
-				}
-			} else if (choice1.equals("Scissors") && !choice2.equals(choice1)) {
-				if (choice2.equals("Paper")) {
-					System.out.println("You won! Scissors beats Paper");
-				} else {
-					System.out.println("You lose! Rock beats scissors");
-				}
-			}
-		} else {
-			System.out.println("Draw! Try again.");
-		}
+	public static String oldGame(String choice1, String choice2) {
+		
+		if(choice1.equals(choice2))
+			return "Draw! Try again";
+		
+		if (choice1.equals("Paper")) {
+			if (choice2.equals("Rock"))
+				return "You won! Paper beats Rock";
 
+			return "You lose! Scissors beats Paper";
+		}
+		if (choice1.equals("Rock")) {
+			if (choice2.equals("Scissors"))
+				return "You won! Rock beats Scissors";
+
+			return "You lose! Paper beats Rock";
+		}
+		if (choice1.equals("Scissors")) {
+			if (choice2.equals("Paper"))
+				return "You won! Scissors beats Paper";
+
+			return "You lose! Rock beats scissors";
+		}
+		return null;
 	}
 }
